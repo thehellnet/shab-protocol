@@ -15,8 +15,8 @@ public class LineFactoryTest {
 
     @Test
     public void addChecksum() throws Exception {
-        input = "CU|b8b342a13659c53f|1.4|3.5|2.9";
-        expected = "0879|CU|b8b342a13659c53f|1.4|3.5|2.9";
+        input = "CU|b8b342a13659c53f|39.43|9.57|36.22";
+        expected = "0986|CU|b8b342a13659c53f|39.43|9.57|36.22";
         actual = LineFactory.addChecksum(input);
         assertEquals(expected, actual);
     }
