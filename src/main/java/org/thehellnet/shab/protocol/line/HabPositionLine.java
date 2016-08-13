@@ -4,6 +4,8 @@ import org.thehellnet.shab.protocol.Command;
 import org.thehellnet.shab.protocol.exception.AbstractProtocolException;
 import org.thehellnet.shab.protocol.exception.ParseLineException;
 
+import java.util.Locale;
+
 /**
  * Created by sardylan on 03/08/16.
  */
@@ -26,7 +28,7 @@ public class HabPositionLine extends Line {
 
     @Override
     public String serializeLine() {
-        return String.format("%s|%.06f|%.06f|%.06f", COMMAND_TAG, latitude, longitude, altitude);
+        return String.format(Locale.US, "%s|%.8f|%.8f|%.1f", COMMAND_TAG, latitude, longitude, altitude);
     }
 
     @Override
