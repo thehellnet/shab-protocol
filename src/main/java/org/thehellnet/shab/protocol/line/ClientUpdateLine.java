@@ -13,9 +13,9 @@ public class ClientUpdateLine extends Line {
     public static final String COMMAND_TAG = "CU";
 
     private String id;
-    private float latitude;
-    private float longitude;
-    private float altitude;
+    private double latitude;
+    private double longitude;
+    private double altitude;
 
     public ClientUpdateLine() {
         super(COMMAND);
@@ -55,27 +55,27 @@ public class ClientUpdateLine extends Line {
         this.id = id;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public float getAltitude() {
+    public double getAltitude() {
         return altitude;
     }
 
-    public void setAltitude(float altitude) {
+    public void setAltitude(double altitude) {
         this.altitude = altitude;
     }
 }
