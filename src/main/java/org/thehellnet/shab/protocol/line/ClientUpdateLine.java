@@ -37,9 +37,14 @@ public class ClientUpdateLine extends Line {
         }
 
         id = items[2];
-        latitude = Float.parseFloat(items[3]);
-        longitude = Float.parseFloat(items[4]);
-        altitude = Float.parseFloat(items[5]);
+
+        try {
+            latitude = Float.parseFloat(items[3]);
+            longitude = Float.parseFloat(items[4]);
+            altitude = Float.parseFloat(items[5]);
+        } catch (NumberFormatException e) {
+            throw new ParseLineException();
+        }
     }
 
     public String getId() {
