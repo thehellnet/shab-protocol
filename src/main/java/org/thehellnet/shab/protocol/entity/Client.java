@@ -2,10 +2,12 @@ package org.thehellnet.shab.protocol.entity;
 
 import org.thehellnet.shab.protocol.Position;
 
+import java.io.Serializable;
+
 /**
  * Created by sardylan on 11/08/16.
  */
-public class Client {
+public class Client implements Serializable {
 
     private String id;
     private String name;

@@ -3,10 +3,13 @@ package org.thehellnet.shab.protocol;
 import org.thehellnet.shab.protocol.line.ClientUpdateLine;
 import org.thehellnet.shab.protocol.line.HabPositionLine;
 
+import java.io.Serializable;
+import java.util.Locale;
+
 /**
  * Created by sardylan on 03/08/16.
  */
-public class Position {
+public class Position implements Serializable {
 
     private double latitude;
     private double longitude;
@@ -59,5 +62,10 @@ public class Position {
 
     public void setAltitude(double altitude) {
         this.altitude = altitude;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(Locale.US, "Lat: %s, Long: %s, Alt: %s", latitude, longitude, altitude);
     }
 }

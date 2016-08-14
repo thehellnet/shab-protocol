@@ -53,7 +53,7 @@ public final class LineFactory {
         return String.format("%04X|%s", checksum16(rawLine), rawLine);
     }
 
-    private static int checksum16(String rawLine) {
+    public static int checksum16(String rawLine) {
         int ret = 0;
 
         for (int i = 0; i < rawLine.length(); i++) {
