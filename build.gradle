@@ -1,5 +1,5 @@
 group "org.thehellnet.shab"
-version "1.2.2"
+version "1.2.3"
 
 buildscript {
     repositories {
@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    runtime group: "commons-codec", name: "commons-codec", version: "1.10"
+    compile group: "commons-codec", name: "commons-codec", version: "1.10"
 
     testCompile group: "junit", name: "junit", version: "4.12"
 }
