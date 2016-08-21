@@ -1,6 +1,6 @@
 package org.thehellnet.shab.protocol.entity;
 
-import org.thehellnet.shab.protocol.Position;
+import org.thehellnet.shab.protocol.helper.Position;
 
 import java.io.Serializable;
 

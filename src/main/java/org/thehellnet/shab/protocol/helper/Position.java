@@ -1,4 +1,4 @@
-package org.thehellnet.shab.protocol;
+package org.thehellnet.shab.protocol.helper;
 
 import org.thehellnet.shab.protocol.line.ClientUpdateLine;
 import org.thehellnet.shab.protocol.line.HabPositionLine;

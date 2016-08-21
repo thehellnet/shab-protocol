@@ -14,6 +14,7 @@ public class HabPositionLine extends Line {
     private static final Command COMMAND = Command.HAB_POSITION;
     public static final String COMMAND_TAG = "HP";
 
+    private int fixStatus;
     private double latitude;
     private double longitude;
     private double altitude;
@@ -28,18 +29,27 @@ public class HabPositionLine extends Line {
 
     @Override
     public String serializeLine() {
-        return String.format(Locale.US, "%s|%.8f|%.8f|%.1f", COMMAND_TAG, latitude, longitude, altitude);
+        return String.format(Locale.US, "%s|%d|%.8f|%.8f|%.1f", COMMAND_TAG, fixStatus, latitude, longitude, altitude);
     }
 
     @Override
     protected void parse(String[] items) throws AbstractProtocolException {
-        if (!items[1].equals(COMMAND_TAG) || items.length != 5) {
+        if (!items[1].equals(COMMAND_TAG) || items.length != 6) {
             throw new ParseLineException();
         }
 
-        latitude = Float.parseFloat(items[2]);
-        longitude = Float.parseFloat(items[3]);
-        altitude = Float.parseFloat(items[4]);
+        fixStatus = Integer.parseInt(items[2]);
+        latitude = Float.parseFloat(items[3]);
+        longitude = Float.parseFloat(items[4]);
+        altitude = Float.parseFloat(items[5]);
+    }
+
+    public int getFixStatus() {
+        return fixStatus;
+    }
+
+    public void setFixStatus(int fixStatus) {
+        this.fixStatus = fixStatus;
     }
 
     public double getLatitude() {
