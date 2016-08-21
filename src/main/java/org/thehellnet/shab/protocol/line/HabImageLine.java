@@ -1,7 +1,6 @@
 package org.thehellnet.shab.protocol.line;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.StringUtils;
+import org.thehellnet.shab.protocol.Base64;
 import org.thehellnet.shab.protocol.Command;
 import org.thehellnet.shab.protocol.exception.AbstractProtocolException;
 import org.thehellnet.shab.protocol.exception.ParseLineException;
@@ -32,7 +31,7 @@ public class HabImageLine extends Line {
                 COMMAND_TAG,
                 sliceTot,
                 sliceNum,
-                StringUtils.newStringUtf8(Base64.encodeBase64(data, false)));
+                Base64.encode(data));
     }
 
     @Override
@@ -43,7 +42,7 @@ public class HabImageLine extends Line {
 
         sliceTot = Integer.parseInt(items[2]);
         sliceNum = Integer.parseInt(items[3]);
-        data = Base64.decodeBase64(items[4]);
+        data = Base64.decode(items[4]);
     }
 
     public int getSliceTot() {

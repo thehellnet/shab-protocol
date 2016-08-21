@@ -12,11 +12,11 @@ import java.util.Locale;
  */
 public class Hab implements Serializable {
 
-    private GpsFixStatus fixStatus;
-    private Position position = new Position();
+    private GpsFixStatus fixStatus = GpsFixStatus.INVALID;
+    private Position position;
     private int sliceTot;
     private int sliceNum;
-    private ByteBuffer imageData;
+    private ByteBuffer imageData = ByteBuffer.allocate(1024 * 1024);
 
     public GpsFixStatus getFixStatus() {
         return fixStatus;
@@ -24,6 +24,10 @@ public class Hab implements Serializable {
 
     public void setFixStatus(GpsFixStatus fixStatus) {
         this.fixStatus = fixStatus;
+    }
+
+    public void setFixStatus(int fixStatus) {
+        this.fixStatus = GpsFixStatus.fromNumber(fixStatus);
     }
 
     public Position getPosition() {
