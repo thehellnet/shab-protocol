@@ -5,6 +5,7 @@ import org.thehellnet.shab.protocol.helper.Position;
 
 import java.io.Serializable;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 import java.util.Locale;
 
 /**
@@ -17,6 +18,8 @@ public class Hab implements Serializable {
     private int sliceTot;
     private int sliceNum;
     private ByteBuffer imageData = ByteBuffer.allocate(1024 * 1024);
+
+    private int imageSize = 0;
 
     public GpsFixStatus getFixStatus() {
         return fixStatus;
@@ -55,15 +58,17 @@ public class Hab implements Serializable {
     }
 
     public byte[] getImageData() {
-        return imageData.array();
+        return Arrays.copyOfRange(imageData.array(), 0, imageSize);
     }
 
     public void clearImageData() {
         imageData.clear();
+        imageSize = 0;
     }
 
     public void appendImageData(byte[] imageSlice) {
         imageData.put(imageSlice);
+        imageSize += imageSlice.length;
     }
 
     @Override
