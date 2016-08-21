@@ -36,4 +36,28 @@ public enum GpsFixStatus {
                 return INVALID;
         }
     }
+
+    @Override
+    public String toString() {
+        switch (this) {
+            case GPS:
+                return "GPS fix (SPS)";
+            case DGPS:
+                return "DGPS fix";
+            case PPS:
+                return "PPS fix";
+            case REAL_TIME_KINEMATIC:
+                return "Real Time Kinematic";
+            case FLOAT_RTK:
+                return "Float RTK";
+            case ESTIMATED:
+                return "Estimated (dead reckoning)";
+            case MANUAL_INPUT:
+                return "Manual input";
+            case SIMULATION:
+                return "Simulation mode";
+            default:
+                return "Invalid";
+        }
+    }
 }
