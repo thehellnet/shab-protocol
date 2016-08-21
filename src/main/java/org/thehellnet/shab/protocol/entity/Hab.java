@@ -19,8 +19,6 @@ public class Hab implements Serializable {
     private int sliceNum;
     private ByteBuffer imageData = ByteBuffer.allocate(1024 * 1024);
 
-    private int imageSize = 0;
-
     public GpsFixStatus getFixStatus() {
         return fixStatus;
     }
@@ -58,17 +56,15 @@ public class Hab implements Serializable {
     }
 
     public byte[] getImageData() {
-        return Arrays.copyOfRange(imageData.array(), 0, imageSize);
+        return Arrays.copyOfRange(imageData.array(), 0, imageData.position());
     }
 
     public void clearImageData() {
         imageData.clear();
-        imageSize = 0;
     }
 
     public void appendImageData(byte[] imageSlice) {
         imageData.put(imageSlice);
-        imageSize += imageSlice.length;
     }
 
     @Override
