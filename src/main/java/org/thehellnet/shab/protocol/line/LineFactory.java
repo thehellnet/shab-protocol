@@ -4,7 +4,8 @@ import org.thehellnet.shab.protocol.exception.AbstractProtocolException;
 import org.thehellnet.shab.protocol.exception.ChecksumNotValidException;
 import org.thehellnet.shab.protocol.exception.CommandNotSupportedException;
 import org.thehellnet.shab.protocol.exception.ParseLineException;
-import org.thehellnet.shab.protocol.line.*;
+
+import static org.thehellnet.shab.protocol.utility.Checksum.checksum16;
 
 /**
  * Created by sardylan on 03/08/16.
@@ -12,7 +13,7 @@ import org.thehellnet.shab.protocol.line.*;
 public final class LineFactory {
 
     public static Line parse(String line) throws AbstractProtocolException {
-        if(line == null) {
+        if (line == null) {
             throw new ParseLineException();
         }
 
@@ -56,16 +57,5 @@ public final class LineFactory {
 
     public static String addChecksum(String rawLine) {
         return String.format("%04X|%s", checksum16(rawLine), rawLine);
-    }
-
-    public static int checksum16(String rawLine) {
-        int ret = 0;
-
-        for (int i = 0; i < rawLine.length(); i++) {
-            ret += rawLine.charAt(i);
-            ret %= 0xFFFF;
-        }
-
-        return ret;
     }
 }
