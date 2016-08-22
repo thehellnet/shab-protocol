@@ -1,6 +1,7 @@
-package org.thehellnet.shab.protocol;
+package org.thehellnet.shab.protocol.utility;
 
 import org.junit.Test;
+import org.thehellnet.shab.protocol.utility.Base64;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;

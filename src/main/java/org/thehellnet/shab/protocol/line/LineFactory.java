@@ -1,7 +1,8 @@
-package org.thehellnet.shab.protocol;
+package org.thehellnet.shab.protocol.line;
 
 import org.thehellnet.shab.protocol.exception.AbstractProtocolException;
 import org.thehellnet.shab.protocol.exception.ChecksumNotValidException;
+import org.thehellnet.shab.protocol.exception.CommandNotSupportedException;
 import org.thehellnet.shab.protocol.exception.ParseLineException;
 import org.thehellnet.shab.protocol.line.*;
 
@@ -11,6 +12,10 @@ import org.thehellnet.shab.protocol.line.*;
 public final class LineFactory {
 
     public static Line parse(String line) throws AbstractProtocolException {
+        if(line == null) {
+            throw new ParseLineException();
+        }
+
         line = line.trim();
         String[] items = line.split("\\|");
 
@@ -46,7 +51,7 @@ public final class LineFactory {
                 return new HabTelemetryLine(line);
         }
 
-        throw new ParseLineException();
+        throw new CommandNotSupportedException();
     }
 
     public static String addChecksum(String rawLine) {
