@@ -3,9 +3,9 @@ package org.thehellnet.shab.protocol.line;
 import org.junit.Test;
 import org.thehellnet.shab.protocol.exception.CommandNotSupportedException;
 import org.thehellnet.shab.protocol.exception.ParseLineException;
-import org.thehellnet.shab.protocol.line.Line;
 
 import static org.junit.Assert.assertEquals;
+import static org.thehellnet.shab.protocol.utility.Checksum.checksum16;
 
 /**
  * Created by sardylan on 13/08/16.
@@ -20,7 +20,7 @@ public class LineFactoryTest {
     public void testChecksum16() throws Exception {
         String input = "0123";
         int expexted = 0x30 + 0x31 + 0x32 + 0x33;
-        int acutal = LineFactory.checksum16(input);
+        int acutal = checksum16(input);
         assertEquals(expexted, acutal);
     }
 
