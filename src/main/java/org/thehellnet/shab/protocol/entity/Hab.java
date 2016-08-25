@@ -15,9 +15,13 @@ public class Hab implements Serializable {
 
     private GpsFixStatus fixStatus = GpsFixStatus.INVALID;
     private Position position;
-    private int sliceTot;
-    private int sliceNum;
+    private int sliceTot = 0;
+    private int sliceNum = 0;
     private ByteBuffer imageData = ByteBuffer.allocate(1024 * 1024);
+
+    private float intTemp = 0;
+    private float extTemp = 0;
+    private float extAlt = 0;
 
     public GpsFixStatus getFixStatus() {
         return fixStatus;
@@ -65,6 +69,30 @@ public class Hab implements Serializable {
 
     public void appendImageData(byte[] imageSlice) {
         imageData.put(imageSlice);
+    }
+
+    public float getIntTemp() {
+        return intTemp;
+    }
+
+    public void setIntTemp(float intTemp) {
+        this.intTemp = intTemp;
+    }
+
+    public float getExtTemp() {
+        return extTemp;
+    }
+
+    public void setExtTemp(float extTemp) {
+        this.extTemp = extTemp;
+    }
+
+    public float getExtAlt() {
+        return extAlt;
+    }
+
+    public void setExtAlt(float extAlt) {
+        this.extAlt = extAlt;
     }
 
     @Override
