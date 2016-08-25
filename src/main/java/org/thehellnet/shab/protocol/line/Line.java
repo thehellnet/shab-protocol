@@ -1,6 +1,5 @@
 package org.thehellnet.shab.protocol.line;
 
-import org.thehellnet.shab.protocol.Command;
 import org.thehellnet.shab.protocol.exception.AbstractProtocolException;
 
 import java.io.Serializable;

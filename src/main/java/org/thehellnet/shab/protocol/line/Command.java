@@ -1,4 +1,4 @@
-package org.thehellnet.shab.protocol;
+package org.thehellnet.shab.protocol.line;
 
 /**
  * Created by sardylan on 03/08/16.
