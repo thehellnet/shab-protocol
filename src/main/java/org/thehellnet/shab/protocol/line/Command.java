@@ -9,5 +9,6 @@ public enum Command {
     CLIENT_DISCONNECT,
     HAB_POSITION,
     HAB_IMAGE,
-    HAB_TELEMETRY
+    HAB_TELEMETRY,
+    SERVER_PING
 }
