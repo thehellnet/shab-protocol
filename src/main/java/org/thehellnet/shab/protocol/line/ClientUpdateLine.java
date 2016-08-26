@@ -1,5 +1,6 @@
 package org.thehellnet.shab.protocol.line;
 
+import org.thehellnet.shab.protocol.entity.Client;
 import org.thehellnet.shab.protocol.exception.AbstractProtocolException;
 import org.thehellnet.shab.protocol.exception.ParseLineException;
 
@@ -24,6 +25,21 @@ public class ClientUpdateLine extends Line {
 
     public ClientUpdateLine(String rawLine) throws AbstractProtocolException {
         super(COMMAND, rawLine);
+    }
+
+    public ClientUpdateLine(Client client) {
+        super(COMMAND);
+
+        if (client == null) {
+            return;
+        }
+
+        id = client.getId();
+        if (client.getPosition() != null) {
+            latitude = client.getPosition().getLatitude();
+            longitude = client.getPosition().getLongitude();
+            altitude = client.getPosition().getAltitude();
+        }
     }
 
     @Override
