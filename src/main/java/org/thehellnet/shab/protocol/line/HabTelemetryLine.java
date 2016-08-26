@@ -1,5 +1,6 @@
 package org.thehellnet.shab.protocol.line;
 
+import org.thehellnet.shab.protocol.entity.Hab;
 import org.thehellnet.shab.protocol.exception.AbstractProtocolException;
 import org.thehellnet.shab.protocol.exception.ParseLineException;
 
@@ -21,6 +22,18 @@ public class HabTelemetryLine extends Line {
 
     public HabTelemetryLine(String rawLine) throws AbstractProtocolException {
         super(COMMAND, rawLine);
+    }
+
+    public HabTelemetryLine(Hab hab) {
+        super(COMMAND);
+
+        if (hab == null) {
+            return;
+        }
+
+        intTemp = hab.getIntTemp();
+        extTemp = hab.getExtTemp();
+        extAlt = hab.getExtAlt();
     }
 
     @Override

@@ -1,8 +1,9 @@
 package org.thehellnet.shab.protocol.line;
 
-import org.thehellnet.shab.protocol.utility.Base64;
+import org.thehellnet.shab.protocol.entity.Hab;
 import org.thehellnet.shab.protocol.exception.AbstractProtocolException;
 import org.thehellnet.shab.protocol.exception.ParseLineException;
+import org.thehellnet.shab.protocol.utility.Base64;
 
 /**
  * Created by sardylan on 03/08/16.
@@ -22,6 +23,20 @@ public class HabImageLine extends Line {
 
     public HabImageLine(String rawLine) throws AbstractProtocolException {
         super(COMMAND, rawLine);
+    }
+
+    public HabImageLine(Hab hab) {
+        super(COMMAND);
+
+        if (hab == null) {
+            return;
+        }
+
+        if (hab.getImageData().length > 0) {
+            sliceTot = hab.getSliceTot();
+            sliceNum = hab.getSliceNum();
+            data = hab.getImageData();
+        }
     }
 
     @Override

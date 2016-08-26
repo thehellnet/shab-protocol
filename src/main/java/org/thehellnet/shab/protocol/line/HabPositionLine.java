@@ -1,5 +1,6 @@
 package org.thehellnet.shab.protocol.line;
 
+import org.thehellnet.shab.protocol.entity.Hab;
 import org.thehellnet.shab.protocol.exception.AbstractProtocolException;
 import org.thehellnet.shab.protocol.exception.ParseLineException;
 
@@ -24,6 +25,22 @@ public class HabPositionLine extends Line {
 
     public HabPositionLine(String rawLine) throws AbstractProtocolException {
         super(COMMAND, rawLine);
+    }
+
+    public HabPositionLine(Hab hab) {
+        super(COMMAND);
+
+        if (hab == null) {
+            return;
+        }
+
+        fixStatus = hab.getFixStatus().toInt();
+
+        if (hab.getPosition() != null) {
+            latitude = hab.getPosition().getLatitude();
+            longitude = hab.getPosition().getLongitude();
+            altitude = hab.getPosition().getAltitude();
+        }
     }
 
     @Override
