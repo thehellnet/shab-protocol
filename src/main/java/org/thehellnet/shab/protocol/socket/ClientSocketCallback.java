@@ -7,7 +7,7 @@ public interface ClientSocketCallback {
 
     void connected();
 
-    void newLine(String line);
+    void newSocketRawLine(String line);
 
     void disconnected();
 }

@@ -49,7 +49,7 @@ public class ClientSocket {
                                 break;
                             }
                             if (lastLine.length() > 0) {
-                                callback.newLine(lastLine);
+                                callback.newSocketRawLine(lastLine);
                             }
                         }
                     } catch (IOException e) {
