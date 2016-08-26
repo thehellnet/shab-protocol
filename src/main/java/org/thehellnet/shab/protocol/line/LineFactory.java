@@ -50,6 +50,8 @@ public final class LineFactory {
                 return new HabImageLine(line);
             case HabTelemetryLine.COMMAND_TAG:
                 return new HabTelemetryLine(line);
+            case ServerPingLine.COMMAND_TAG:
+                return new ServerPingLine(line);
         }
 
         throw new CommandNotSupportedException();
