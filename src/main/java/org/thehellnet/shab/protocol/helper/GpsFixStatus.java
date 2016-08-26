@@ -37,6 +37,29 @@ public enum GpsFixStatus {
         }
     }
 
+    public int toInt() {
+        switch (this) {
+            case GPS:
+                return 1;
+            case DGPS:
+                return 2;
+            case PPS:
+                return 3;
+            case REAL_TIME_KINEMATIC:
+                return 4;
+            case FLOAT_RTK:
+                return 5;
+            case ESTIMATED:
+                return 6;
+            case MANUAL_INPUT:
+                return 7;
+            case SIMULATION:
+                return 8;
+            default:
+                return 0;
+        }
+    }
+
     @Override
     public String toString() {
         switch (this) {
