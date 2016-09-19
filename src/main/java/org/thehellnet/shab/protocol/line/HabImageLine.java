@@ -13,6 +13,7 @@ public class HabImageLine extends Line {
     private static final Command COMMAND = Command.HAB_IMAGE;
     public static final String COMMAND_TAG = "HI";
 
+    private long timestamp;
     private int sliceTot;
     private int sliceNum;
     private byte[] data;
@@ -41,8 +42,9 @@ public class HabImageLine extends Line {
 
     @Override
     public String serializeLine() {
-        return String.format("%s|%d|%d|%s",
+        return String.format("%s|%d|%d|%d|%s",
                 COMMAND_TAG,
+                timestamp,
                 sliceTot,
                 sliceNum,
                 Base64.encode(data));
@@ -50,13 +52,22 @@ public class HabImageLine extends Line {
 
     @Override
     protected void parse(String[] items) throws AbstractProtocolException {
-        if (!items[1].equals(COMMAND_TAG) || items.length != 5) {
+        if (!items[1].equals(COMMAND_TAG) || items.length != 6) {
             throw new ParseLineException();
         }
 
-        sliceTot = Integer.parseInt(items[2]);
-        sliceNum = Integer.parseInt(items[3]);
-        data = Base64.decode(items[4]);
+        timestamp = Long.parseLong(items[2]);
+        sliceTot = Integer.parseInt(items[3]);
+        sliceNum = Integer.parseInt(items[4]);
+        data = Base64.decode(items[5]);
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getSliceTot() {

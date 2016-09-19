@@ -12,6 +12,7 @@ public class HabTelemetryLine extends Line {
     private static final Command COMMAND = Command.HAB_TELEMETRY;
     public static final String COMMAND_TAG = "HT";
 
+    private long timestamp;
     private float intTemp;
     private float extTemp;
     private float extAlt;
@@ -38,20 +39,30 @@ public class HabTelemetryLine extends Line {
 
     @Override
     public String serializeLine() {
-        return String.format("%s|%.01f|%.01f|%.01f",
+        return String.format("%s|%d|%.01f|%.01f|%.01f",
                 COMMAND_TAG,
+                timestamp,
                 intTemp, extTemp, extAlt);
     }
 
     @Override
     protected void parse(String[] items) throws AbstractProtocolException {
-        if (!items[1].equals(COMMAND_TAG) || items.length != 5) {
+        if (!items[1].equals(COMMAND_TAG) || items.length != 6) {
             throw new ParseLineException();
         }
 
-        intTemp = Float.parseFloat(items[2]);
-        extTemp = Float.parseFloat(items[3]);
-        extAlt = Float.parseFloat(items[4]);
+        timestamp = Long.parseLong(items[2]);
+        intTemp = Float.parseFloat(items[3]);
+        extTemp = Float.parseFloat(items[4]);
+        extAlt = Float.parseFloat(items[5]);
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public float getIntTemp() {

@@ -13,6 +13,8 @@ import java.util.Locale;
  */
 public class Hab implements Serializable {
 
+    private long lastTimestamp = 0;
+
     private GpsFixStatus fixStatus = GpsFixStatus.INVALID;
     private Position position;
     private int sliceTot = 0;
@@ -22,6 +24,14 @@ public class Hab implements Serializable {
     private float intTemp = 0;
     private float extTemp = 0;
     private float extAlt = 0;
+
+    public long getLastTimestamp() {
+        return lastTimestamp;
+    }
+
+    public void setLastTimestamp(long lastTimestamp) {
+        this.lastTimestamp = lastTimestamp;
+    }
 
     public GpsFixStatus getFixStatus() {
         return fixStatus;

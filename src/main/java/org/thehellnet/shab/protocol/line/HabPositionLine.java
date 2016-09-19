@@ -14,6 +14,7 @@ public class HabPositionLine extends Line {
     private static final Command COMMAND = Command.HAB_POSITION;
     public static final String COMMAND_TAG = "HP";
 
+    private long timestamp;
     private int fixStatus;
     private double latitude;
     private double longitude;
@@ -45,19 +46,28 @@ public class HabPositionLine extends Line {
 
     @Override
     public String serializeLine() {
-        return String.format(Locale.US, "%s|%d|%.8f|%.8f|%.1f", COMMAND_TAG, fixStatus, latitude, longitude, altitude);
+        return String.format(Locale.US, "%s|%d|%d|%.8f|%.8f|%.1f", COMMAND_TAG, timestamp, fixStatus, latitude, longitude, altitude);
     }
 
     @Override
     protected void parse(String[] items) throws AbstractProtocolException {
-        if (!items[1].equals(COMMAND_TAG) || items.length != 6) {
+        if (!items[1].equals(COMMAND_TAG) || items.length != 7) {
             throw new ParseLineException();
         }
 
-        fixStatus = Integer.parseInt(items[2]);
-        latitude = Float.parseFloat(items[3]);
-        longitude = Float.parseFloat(items[4]);
-        altitude = Float.parseFloat(items[5]);
+        timestamp = Long.parseLong(items[2]);
+        fixStatus = Integer.parseInt(items[3]);
+        latitude = Float.parseFloat(items[4]);
+        longitude = Float.parseFloat(items[5]);
+        altitude = Float.parseFloat(items[6]);
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getFixStatus() {
