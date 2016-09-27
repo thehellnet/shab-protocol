@@ -1,5 +1,6 @@
 package org.thehellnet.shab.protocol.entity;
 
+import org.thehellnet.shab.protocol.helper.GpsFixQuality;
 import org.thehellnet.shab.protocol.helper.Position;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ public class Client implements Serializable {
 
     private String id;
     private String name;
+    private GpsFixQuality fixStatus = GpsFixQuality.INVALID;
     private Position position;
 
     public Client() {
@@ -45,6 +47,14 @@ public class Client implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public GpsFixQuality getFixStatus() {
+        return fixStatus;
+    }
+
+    public void setFixStatus(GpsFixQuality fixStatus) {
+        this.fixStatus = fixStatus;
     }
 
     public Position getPosition() {

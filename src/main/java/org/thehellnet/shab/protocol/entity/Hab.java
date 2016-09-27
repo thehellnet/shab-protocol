@@ -1,6 +1,6 @@
 package org.thehellnet.shab.protocol.entity;
 
-import org.thehellnet.shab.protocol.helper.GpsFixStatus;
+import org.thehellnet.shab.protocol.helper.GpsFixQuality;
 import org.thehellnet.shab.protocol.helper.Position;
 
 import java.io.Serializable;
@@ -15,11 +15,12 @@ public class Hab implements Serializable {
 
     private long lastTimestamp = 0;
 
-    private GpsFixStatus fixStatus = GpsFixStatus.INVALID;
+    private GpsFixQuality fixStatus = GpsFixQuality.INVALID;
     private Position position;
     private int sliceTot = 0;
     private int sliceNum = 0;
     private ByteBuffer imageData = ByteBuffer.allocate(1024 * 1024);
+    private byte[] lastImageData;
 
     private float intTemp = 0;
     private float extTemp = 0;
@@ -33,16 +34,16 @@ public class Hab implements Serializable {
         this.lastTimestamp = lastTimestamp;
     }
 
-    public GpsFixStatus getFixStatus() {
+    public GpsFixQuality getFixStatus() {
         return fixStatus;
     }
 
-    public void setFixStatus(GpsFixStatus fixStatus) {
+    public void setFixStatus(GpsFixQuality fixStatus) {
         this.fixStatus = fixStatus;
     }
 
     public void setFixStatus(int fixStatus) {
-        this.fixStatus = GpsFixStatus.fromNumber(fixStatus);
+        this.fixStatus = GpsFixQuality.fromNumber(fixStatus);
     }
 
     public Position getPosition() {
@@ -70,7 +71,8 @@ public class Hab implements Serializable {
     }
 
     public byte[] getImageData() {
-        return Arrays.copyOfRange(imageData.array(), 0, imageData.position());
+        lastImageData = Arrays.copyOfRange(imageData.array(), 0, imageData.position());
+        return lastImageData;
     }
 
     public void clearImageData() {
@@ -79,6 +81,10 @@ public class Hab implements Serializable {
 
     public void appendImageData(byte[] imageSlice) {
         imageData.put(imageSlice);
+    }
+
+    public byte[] getLastImageData() {
+        return lastImageData;
     }
 
     public float getIntTemp() {

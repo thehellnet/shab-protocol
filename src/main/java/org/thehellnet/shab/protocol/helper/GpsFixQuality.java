@@ -3,7 +3,7 @@ package org.thehellnet.shab.protocol.helper;
 /**
  * Created by sardylan on 21/08/16.
  */
-public enum GpsFixStatus {
+public enum GpsFixQuality {
     INVALID,
     GPS,
     DGPS,
@@ -14,7 +14,7 @@ public enum GpsFixStatus {
     MANUAL_INPUT,
     SIMULATION;
 
-    public static GpsFixStatus fromNumber(int number) {
+    public static GpsFixQuality fromNumber(int number) {
         switch (number) {
             case 1:
                 return GPS;
